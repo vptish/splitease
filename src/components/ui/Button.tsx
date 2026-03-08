@@ -43,6 +43,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       iconRight: IconRight,
       children,
       className,
+      onClick,
+      ...rest
     },
     ref
   ) => {
@@ -66,7 +68,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={{ scale: disabled ? 1 : 1.02 }}
         whileTap={{ scale: disabled ? 1 : 0.98 }}
         disabled={disabled || loading}
+        onClick={onClick}
         type="button"
+        {...rest}
       >
         {loading ? (
           <Loader2 size={Icon} className="animate-spin" />

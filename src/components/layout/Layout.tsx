@@ -18,8 +18,8 @@ export default function Layout() {
         </div>
       </main>
 
-      {/* Bottom navigation - mobile only */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+      {/* Bottom navigation */}
+      <div className="fixed bottom-0 left-0 right-0 z-40">
         <Navigation />
       </div>
     </div>
