@@ -6,13 +6,22 @@ import { LucideIcon, Loader2 } from 'lucide-react';
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
   loading?: boolean;
+  disabled?: boolean;
   iconLeft?: LucideIcon;
   iconRight?: LucideIcon;
+  children?: React.ReactNode;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  id?: string;
+  title?: string;
+  'aria-label'?: string;
+  style?: React.CSSProperties;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -44,7 +53,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       className,
       onClick,
-      ...rest
     },
     ref
   ) => {
@@ -70,7 +78,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         onClick={onClick}
         type="button"
-        {...rest}
       >
         {loading ? (
           <Loader2 size={Icon} className="animate-spin" />
