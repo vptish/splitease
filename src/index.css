@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 249 250 251;
+    --color-surface: 255 255 255;
+    --color-text: 15 23 42;
+    --color-text-muted: 100 116 139;
+    --color-border: 226 232 240;
+    --color-brand: 59 130 246;
+    --blur-amount: 20px;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .dark {
+    --color-bg: 15 23 42;
+    --color-surface: 30 41 59;
+    --color-text: 241 245 249;
+    --color-text-muted: 148 163 184;
+    --color-border: 51 65 85;
+    --color-brand: 96 165 250;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text));
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-border));
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .glass {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Gradient mesh background */
+  .mesh-gradient {
+    background:
+      radial-gradient(at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+  }
+
+  .dark .mesh-gradient {
+    background:
+      radial-gradient(at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+      radial-gradient(at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--color-border) / 0.3) 0%,
+      rgb(var(--color-border) / 0.5) 50%,
+      rgb(var(--color-border) / 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+  }
+
+  /* Subtle press effect */
+  .pressable {
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .pressable:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+
+  /* Safe area padding for bottom nav */
+  .safe-bottom {
+    padding-bottom: calc(1rem + var(--safe-area-bottom));
+  }
+}
